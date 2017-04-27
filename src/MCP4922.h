@@ -16,12 +16,9 @@ public:
         SPI.begin();
         pinMode(csPin, OUTPUT);
         pinMode(lDac, OUTPUT);
-
         digitalWrite(csPin, HIGH);
         digitalWrite(lDac, HIGH);
-
         bitUnit[0].settingBit.ch = 0;
-        bitUnit[0].settingBit.buf = 1;
         bitUnit[1].settingBit.ch = 1;
     }
 
