@@ -37,7 +37,7 @@ public:
         digitalWrite(lDac, LOW);
     }
 
-    const void setBuffer(const uint8_t ch, const bool isUse){
+    void setBuffer(const uint8_t ch, const bool isUse){
         if(isUse){
             enableBuf(ch);
         }else{
@@ -45,7 +45,7 @@ public:
         }
     }
 
-    const void setBufferAll(const bool isUse){
+    void setBufferAll(const bool isUse){
         if(isUse){
             enableBufAll();
         }else{
@@ -53,24 +53,24 @@ public:
         }
     }
 
-    const void enableBuf(const uint8_t ch){
+    void enableBuf(const uint8_t ch){
         bitUnit[ch].settingBit.buf = 1;
     }
-    const void disableBuf(const uint8_t ch){
+    void disableBuf(const uint8_t ch){
         bitUnit[ch].settingBit.buf = 0;
     }
 
-    const void enableBufAll(){
+    void enableBufAll(){
         bitUnit[0].settingBit.buf = 1;
         bitUnit[1].settingBit.buf = 1;
     }
 
-    const void disableBufAll(){
+    void disableBufAll(){
         bitUnit[0].settingBit.buf = 0;
         bitUnit[1].settingBit.buf = 0;
     }
 
-    const void setOutPutGainSelect(const int ch, const bool isDoubled){
+    void setOutPutGainSelect(const int ch, const bool isDoubled){
         if(isDoubled){
             OutPutGainDoubled(ch);
         }else{
@@ -78,7 +78,7 @@ public:
         }
     }
 
-    const void setOutPutGainSelectAll(const bool isDoubled){
+    void setOutPutGainSelectAll(const bool isDoubled){
         if(isDoubled){
             OutPutGainDoubledAll();
         }else{
@@ -86,20 +86,20 @@ public:
         }
     }
 
-    const void OutPutGainDoubled(const int ch){
+    void OutPutGainDoubled(const int ch){
         bitUnit[ch].settingBit.gain = 1;
     }
 
-    const void OutPutGainEqual(const int ch){
+    void OutPutGainEqual(const int ch){
         bitUnit[ch].settingBit.gain = 0;
     }
 
-    const void OutPutGainDoubledAll(){
+    void OutPutGainDoubledAll(){
         bitUnit[0].settingBit.gain = 1;
         bitUnit[1].settingBit.gain = 1;
     }
 
-    const void OutPutGainEqualAll(){
+    void OutPutGainEqualAll(){
         bitUnit[0].settingBit.gain = 0;
         bitUnit[1].settingBit.gain = 0;
     }
@@ -108,10 +108,13 @@ public:
         return bitUnit[ch];
     }
 
+    MCP4922BitUnit getBitUnit(const int ch) const {
+        return bitUnit[ch];
+    }
 private:
-const int csPin;
-const int lDac;
-const SPISettings settings;
-MCP4922BitUnit bitUnit[2];
+    const int csPin;
+    const int lDac;
+    const SPISettings settings;
+    MCP4922BitUnit bitUnit[2];
 };
 #endif /* end of include guard: MCP4922_H */
