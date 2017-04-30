@@ -4,14 +4,6 @@
 #include <stdint.h>
 
 #define DEF_BIT 0x30
-struct MCP4922SettingBit{
-    MCP4922SettingBit(){}
-    uint16_t val:12;
-    uint8_t shdn:1;
-    uint8_t gain:1;
-    uint8_t buf:1;
-    uint8_t ch:1;
-};
 
 union MCP4922BitUnit{
     MCP4922BitUnit(){
@@ -29,7 +21,13 @@ union MCP4922BitUnit{
         return *this;
     }
 
-    MCP4922SettingBit settingBit;
+    struct {
+        uint16_t val:12;
+        uint8_t shdn:1;
+        uint8_t gain:1;
+        uint8_t buf:1;
+        uint8_t ch:1;
+    };
     uint8_t streamBit[2];
 };
 

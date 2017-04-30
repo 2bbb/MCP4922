@@ -18,12 +18,12 @@ public:
         pinMode(lDac, OUTPUT);
         digitalWrite(csPin, HIGH);
         digitalWrite(lDac, HIGH);
-        bitUnit[0].settingBit.ch = 0;
-        bitUnit[1].settingBit.ch = 1;
+        bitUnit[0].ch = 0;
+        bitUnit[1].ch = 1;
     }
 
     void write(const uint8_t ch, const uint16_t value){
-        bitUnit[ch].settingBit.val = value;
+        bitUnit[ch].val = value;
         digitalWrite(lDac, HIGH);
         SPI.beginTransaction(settings);
         digitalWrite(csPin, LOW);
@@ -54,20 +54,20 @@ public:
     }
 
     void enableBuf(const uint8_t ch){
-        bitUnit[ch].settingBit.buf = 1;
+        bitUnit[ch].buf = 1;
     }
     void disableBuf(const uint8_t ch){
-        bitUnit[ch].settingBit.buf = 0;
+        bitUnit[ch].buf = 0;
     }
 
     void enableBufAll(){
-        bitUnit[0].settingBit.buf = 1;
-        bitUnit[1].settingBit.buf = 1;
+        bitUnit[0].buf = 1;
+        bitUnit[1].buf = 1;
     }
 
     void disableBufAll(){
-        bitUnit[0].settingBit.buf = 0;
-        bitUnit[1].settingBit.buf = 0;
+        bitUnit[0].buf = 0;
+        bitUnit[1].buf = 0;
     }
 
     void setOutPutGainSelect(const int ch, const bool isDoubled){
@@ -87,21 +87,21 @@ public:
     }
 
     void OutPutGainDoubled(const int ch){
-        bitUnit[ch].settingBit.gain = 1;
+        bitUnit[ch].gain = 1;
     }
 
     void OutPutGainEqual(const int ch){
-        bitUnit[ch].settingBit.gain = 0;
+        bitUnit[ch].gain = 0;
     }
 
     void OutPutGainDoubledAll(){
-        bitUnit[0].settingBit.gain = 1;
-        bitUnit[1].settingBit.gain = 1;
+        bitUnit[0].gain = 1;
+        bitUnit[1].gain = 1;
     }
 
     void OutPutGainEqualAll(){
-        bitUnit[0].settingBit.gain = 0;
-        bitUnit[1].settingBit.gain = 0;
+        bitUnit[0].gain = 0;
+        bitUnit[1].gain = 0;
     }
 
     MCP4922BitUnit& getBitUnit(const int ch){
