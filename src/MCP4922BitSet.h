@@ -19,11 +19,11 @@ union MCP4922BitUnit{
         streamBit[0] = 0x00;
     }
 
-    MCP4922BitUnit(MCP4922BitUnit& bu){
+    MCP4922BitUnit(const MCP4922BitUnit& bu){
         *this = bu;
     }
 
-    MCP4922BitUnit operator = (const MCP4922BitUnit& bu){
+    MCP4922BitUnit &operator = (const MCP4922BitUnit& bu){
         this -> streamBit[0] = bu.streamBit[0];
         this -> streamBit[1] = bu.streamBit[1];
         return *this;
